@@ -2,23 +2,11 @@
 import express from "express";
 import cors from "cors";
 
-const allowedOrigins = [process.env.CLIENT_ORIGIN];
 const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("CORS not allowed"));
-      }
-    },
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 // In-memory store (for simplicity)
